@@ -8,12 +8,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import TimeSeriesSplit, GridSearchCV
 from sklearn.metrics import mean_absolute_percentage_error, mean_absolute_error, r2_score, make_scorer
 from lightgbm import LGBMRegressor
-from catboost import CatBoostRegressor as _CatBoostRegressor
+from catboost import _CatBoostRegressor
 from sklearn.base import BaseEstimator, RegressorMixin
 
-class CatBoostRegressorSK(_CatBoostRegressor, BaseEstimator, RegressorMixin):
-    """Thin sklearn-compatible wrapper around CatBoostRegressor."""
-    pass
 
 class SoftSensorPipeline:
     """
@@ -176,7 +173,7 @@ class SoftSensorPipeline:
         }
         models.append(("ElasticNet", elasticnet_pipeline, elasticnet_params))
 
-        cat = CatBoostRegressorSK(
+        cat = _CatBoostRegressor(
             loss_function="MAE",
             random_seed=42,
             verbose=False,
