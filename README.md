@@ -15,6 +15,7 @@ The final production model is built using *CatBoost*, selected for its superior 
 | **`next_steps.md`** | **Future Work:** Document outlining potential next steps, including exploring sequence models, advanced metrics (MDA/DTW), GPU tuning, external data integration, and drift analysis. |
 | **`README.md`** | **Project Overview:** Main documentation describing the project goal, setup instructions, methodology, and repository structure. |
 | **`architecture_diagrams.png`** | **Visuals:** High-level system and deployment diagrams illustrating how the soft sensor integrates into the mining data pipeline. |
+| **`library/`** | **Py Library:** Py lib version of the pipeline for feature engineering, model training, hyperparameter tuning, and evaluation of the soft sensor. (eror prone) |
 | **`requirements.txt`** | **Dependencies:** List of Python packages required to run the project, ensuring reproducibility and environment consistency. |
 | **`datasets/`** | **Raw Data Storage:** Folder containing the unmodified dataset sources used for analysis and model development (the Kaggle flotation dataset ZIP). |
 | **`datasets/quality_prediction_in_a_mining_process.zip`** | **Original Dataset Archive:** The raw ZIP file downloaded from Kaggle; extracted and processed by the notebook. |
