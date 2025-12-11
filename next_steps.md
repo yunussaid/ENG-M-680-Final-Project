@@ -111,14 +111,3 @@ We have begun organizing reusable components into `src/`, but next steps include
 This will improve maintainability for future teams.
 
 ---
-
-## **9. Expand Architecture & Deployment Planning**
-
-To prepare for a production-ready soft sensor:
-
-* Build a clear interface for streaming sensor data
-* Add a stable REST API endpoint for predictions
-* Integrate with dashboard tools (Streamlit, Grafana)
-* Simulate edge-case behavior (missing sensors, drift, spikes)
-
----

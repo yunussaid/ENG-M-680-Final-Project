@@ -130,10 +130,10 @@ The final feature set includes:
 **License:** Internal academic project; downstream use governed by the dataset’s license.
 
 **Contacts (Group 2 – ENG M 680 Fall 2025):**
-* Yunus Said: *ysaid@ualberta.ca*,
-* Anu Parbhakar: *aparbhak@ualberta.ca*,
 * Anmol Devgun: *devgun@ualberta.ca*,
+* Anu Parbhakar: *aparbhak@ualberta.ca*,
 * Xi Chen: *xc24@ualberta.ca*,
-* Youssef Ibrahim: *yibrahim@ualberta.ca*
+* Youssef Ibrahim: *yibrahim@ualberta.ca*,
+* Yunus Said: *ysaid@ualberta.ca*,
 
 ---
