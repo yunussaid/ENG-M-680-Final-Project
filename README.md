@@ -15,7 +15,7 @@ The final production model is built using *CatBoost*, selected for its superior 
 | **`next_steps.md`** | **Future Work:** Document outlining potential next steps, including exploring sequence models, advanced metrics (MDA/DTW), GPU tuning, external data integration, and drift analysis. |
 | **`README.md`** | **Project Overview:** Main documentation describing the project goal, setup instructions, methodology, and repository structure. |
 | **`architecture_diagrams.png`** | **Visuals:** High-level system and deployment diagrams illustrating how the soft sensor integrates into the mining data pipeline. |
-| **`library/`** | **Py Library:** Py lib version of the pipeline for feature engineering, model training, hyperparameter tuning, and evaluation of the soft sensor. (eror prone) |
+| **`library/`** | **Python Library:** Python library version `soft_sensor_lib.py` of the pipeline for feature engineering, model training, hyperparameter tuning, and evaluation of the soft sensor (+ function calls from `soft_sensor_lib.ipynb` notebook). |
 | **`requirements.txt`** | **Dependencies:** List of Python packages required to run the project, ensuring reproducibility and environment consistency. |
 | **`datasets/`** | **Raw Data Storage:** Folder containing the unmodified dataset sources used for analysis and model development (the Kaggle flotation dataset ZIP). |
 | **`datasets/quality_prediction_in_a_mining_process.zip`** | **Original Dataset Archive:** The raw ZIP file downloaded from Kaggle; extracted and processed by the notebook. |
@@ -35,9 +35,9 @@ We prioritized the *85–15 Chronological Split* for model selection to simulate
 - *MAE:* 0.48
 
 > *Note on Evaluation Strategy:*
-> The 85–15 split represents true forward-in-time generalization. While other models (like LightGBM) showed inflated scores (R² ~0.91) under a 1–59 split, those metrics rely on interpolating within the same hour where the lab target is constant. 
+> The 85–15 split represents true forward-in-time generalization. While other models (like LightGBM) showed inflated scores (R² ~0.91) under a 1–59 split, those metrics rely on more so interpolating within the same hour where the lab target is constant and seen during training. 
 >
-> We chose the 85–15 split results because they reflect the actual difficulty of predicting silica across different unseen months (not in trainig data) and operating regimes, providing a realistic expectation of performance in a live plant.
+> We chose the 85–15 split results for picking our final model because they reflect the actual difficulty of predicting silica across different months and operating regimes (that are not seen during trainig), providing a realistic expectation of real-time performance in a live plant.
 
 
 

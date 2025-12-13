@@ -188,16 +188,26 @@ class SoftSensorPipeline:
             "n_estimators": [300, 700],
             "l2_leaf_reg":  [1, 3],
         }
-        models.append(("CatBoost", cat, cat_params))
+        # Below are the parameters for the best performing CatBoost model after conducting CV grid search on
+        # both 85-15 and 1-59 train/test splits using cat_params dictionary
+        cat_params_best = {"depth": [6], "learning_rate": [0.03], "n_estimators": [300], "l2_leaf_reg": [3]}
+        models.append(("CatBoost", cat, cat_params_best))
 
         lgbm = LGBMRegressor(objective="regression", random_state=42, n_jobs=-1)
-        lgbm_params_3_fits = {"num_leaves":[63],"learning_rate":[0.05],"n_estimators":[500]}
-        models.append(("LightGBM", lgbm, lgbm_params_3_fits))
+        lgbm_params = {
+            "num_leaves":    [31, 63],
+            "learning_rate": [0.05],
+            "n_estimators":  [300, 500],
+        }
+        # Below are the parameters for the best performing CatBoost model after conducting CV grid search on
+        # both 85-15 and 1-59 train/test splits using lgbm_params dictionary
+        lgbm_params_best = {"num_leaves":[31],"learning_rate":[0.05],"n_estimators":[500]}
+        models.append(("LightGBM", lgbm, lgbm_params_best))
 
         return models
 
     @staticmethod
-    def tune_and_evaluate_models(models, X_train, y_train, X_test, y_test, folds=3, n_jobs=2, verbose=3):
+    def tune_and_evaluate_models(models, X_train, y_train, X_test, y_test, folds=3, n_jobs=2, verbose=1):
         results = []
         tscv = TimeSeriesSplit(n_splits=folds)
         mape_scorer = make_scorer(mean_absolute_percentage_error, greater_is_better=False)
@@ -261,13 +271,13 @@ class SoftSensorPipeline:
         return model, (mape, r2, mae), (X_train, y_train, X_test, y_test)
 
     @staticmethod
-    def run_model_comparison(df_features, split_func, folds=3, n_jobs=2, debug=False):
+    def run_model_comparison(df_features, split_func, folds=3, n_jobs=2, debug=True):
         X_train, y_train, X_test, y_test = split_func(df_features)
         if debug:
-            print("Train shape:", X_train.shape, " Test shape:", X_test.shape)
+            print("X_train shape:", X_train.shape, " X_test shape:", X_test.shape)
         models = SoftSensorPipeline.make_models()
         results, summary = SoftSensorPipeline.tune_and_evaluate_models(
             models=models, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
-            folds=folds, n_jobs=n_jobs, verbose=3
+            folds=folds, n_jobs=n_jobs, verbose=1
         )
         return results, summary
